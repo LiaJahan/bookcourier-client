@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Register = () => {
-  const {
-    createUser,
-    updateUserProfile,
-  } = useContext(AuthContext);
+  const { createUser, updateUserProfile } =
+    useContext(AuthContext);
+
+  const axiosPublic = useAxiosPublic();
 
   const navigate = useNavigate();
 
@@ -25,9 +26,7 @@ const Register = () => {
 
       formData.append("image", image);
 
-      const imageUploadUrl = `https://api.imgbb.com/1/upload?key=${
-        import.meta.env.VITE_IMGBB_API_KEY
-      }`;
+      const imageUploadUrl = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`;
 
       const imageResponse = await fetch(
         imageUploadUrl,
@@ -53,6 +52,19 @@ const Register = () => {
         photoURL
       );
 
+      const userInfo = {
+        name,
+        email,
+        photoURL,
+        role: "user",
+        createdAt: new Date(),
+      };
+
+      await axiosPublic.post(
+        "/users",
+        userInfo
+      );
+
       console.log(result.user);
 
       navigate("/");
@@ -64,9 +76,7 @@ const Register = () => {
   return (
     <div className="min-h-screen flex justify-center items-center">
       <div className="card bg-base-100 w-full max-w-md shadow-xl">
-
         <div className="card-body">
-
           <h2 className="text-3xl font-bold text-center">
             Register
           </h2>
@@ -110,7 +120,6 @@ const Register = () => {
               Register
             </button>
           </form>
-
         </div>
       </div>
     </div>
