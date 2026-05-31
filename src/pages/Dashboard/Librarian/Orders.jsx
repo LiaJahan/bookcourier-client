@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 import { AuthContext } from "../../../providers/AuthProvider";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
@@ -11,17 +12,43 @@ const Orders = () => {
   const [orders, setOrders] =
     useState([]);
 
-  useEffect(() => {
+  const fetchOrders = async () => {
     if (!user?.email) return;
 
-    axiosPublic
-      .get(
+    const res =
+      await axiosPublic.get(
         `/librarian-orders/${user.email}`
-      )
-      .then((res) => {
-        setOrders(res.data);
-      });
+      );
+
+    setOrders(res.data);
+  };
+
+  useEffect(() => {
+    fetchOrders();
   }, [user]);
+
+  const updateStatus = async (
+    id,
+    status
+  ) => {
+    try {
+      const res =
+        await axiosPublic.patch(
+          `/orders/status/${id}`,
+          { status }
+        );
+
+      if (res.data.modifiedCount > 0) {
+        toast.success(
+          `Order marked as ${status}`
+        );
+
+        fetchOrders();
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <div>
@@ -38,8 +65,9 @@ const Orders = () => {
               <th>Customer</th>
               <th>Phone</th>
               <th>Address</th>
-              <th>Order Status</th>
+              <th>Status</th>
               <th>Payment</th>
+              <th>Actions</th>
             </tr>
           </thead>
 
@@ -88,6 +116,42 @@ const Orders = () => {
                         order.paymentStatus
                       }
                     </span>
+                  </td>
+
+                  <td>
+                    <div className="flex gap-2 flex-wrap">
+
+                      {order.orderStatus ===
+                        "pending" && (
+                        <button
+                          onClick={() =>
+                            updateStatus(
+                              order._id,
+                              "processing"
+                            )
+                          }
+                          className="btn btn-sm btn-primary"
+                        >
+                          Processing
+                        </button>
+                      )}
+
+                      {order.orderStatus ===
+                        "processing" && (
+                        <button
+                          onClick={() =>
+                            updateStatus(
+                              order._id,
+                              "delivered"
+                            )
+                          }
+                          className="btn btn-sm btn-success"
+                        >
+                          Delivered
+                        </button>
+                      )}
+
+                    </div>
                   </td>
                 </tr>
               )

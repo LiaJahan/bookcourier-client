@@ -73,6 +73,27 @@ const MyOrders = () => {
       .showModal();
   };
 
+  const getOrderBadgeClass = (
+    status
+  ) => {
+    switch (status) {
+      case "pending":
+        return "badge-warning";
+
+      case "processing":
+        return "badge-info";
+
+      case "delivered":
+        return "badge-success";
+
+      case "cancelled":
+        return "badge-error";
+
+      default:
+        return "badge-neutral";
+    }
+  };
+
   return (
     <div>
       <h2 className="text-3xl font-bold mb-6">
@@ -105,7 +126,11 @@ const MyOrders = () => {
                   </td>
 
                   <td>
-                    <span className="badge badge-info">
+                    <span
+                      className={`badge ${getOrderBadgeClass(
+                        order.orderStatus
+                      )}`}
+                    >
                       {
                         order.orderStatus
                       }
@@ -113,7 +138,14 @@ const MyOrders = () => {
                   </td>
 
                   <td>
-                    <span className="badge badge-success">
+                    <span
+                      className={`badge ${
+                        order.paymentStatus ===
+                        "paid"
+                          ? "badge-success"
+                          : "badge-warning"
+                      }`}
+                    >
                       {
                         order.paymentStatus
                       }

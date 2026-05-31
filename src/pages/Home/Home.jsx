@@ -1,21 +1,21 @@
-// const Home = () => {
-//   return <h1>Home Page</h1>;
-// };
-
-// export default Home;
-
-import useRole from "../../hooks/useRole";
+import Banner from "./Sections/Banner";
+import LatestBooks from "./Sections/LatestBooks";
+import Coverage from "./Sections/Coverage";
+import WhyChooseUs from "./Sections/WhyChooseUs";
+import Statistics from "./Sections/Statistics";
+import Testimonials from "./Sections/Testimonials";
+import CTA from "./Sections/CTA";
 
 const Home = () => {
-  const { role, roleLoading } = useRole();
-
-  if (roleLoading) {
-    return <h2>Loading...</h2>;
-  }
-
   return (
     <div>
-      <h2>Role: {role}</h2>
+      <Banner />
+      <LatestBooks />
+      <Coverage />
+      <WhyChooseUs />
+      <Statistics />
+      <Testimonials />
+      <CTA />
     </div>
   );
 };
