@@ -49,7 +49,9 @@ const router = createBrowserRouter([
         element: <BookDetails />,
         loader: async ({ params }) =>
           fetch(
-            `http://localhost:5000/books/${params.id}`
+            `
+            
+            https://bookcourier-server-4mi1.onrender.com/books/${params.id}`
           ),
       },
       {
@@ -77,7 +79,7 @@ const router = createBrowserRouter([
         index: true,
         element: <MyProfile />,
       },
-      
+
       {
         path: "my-profile",
         element: <MyProfile />,
@@ -124,7 +126,7 @@ const router = createBrowserRouter([
         ),
         loader: async ({ params }) =>
           fetch(
-            `http://localhost:5000/books/${params.id}`
+            `https://bookcourier-server-4mi1.onrender.com/books/${params.id}`
           ),
       },
 
