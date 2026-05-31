@@ -71,9 +71,27 @@ const Navbar = () => {
         <div className="navbar-end gap-2">
 
           {/* Theme Toggle Placeholder */}
-          <button className="btn btn-ghost btn-sm">
-            🌙
-          </button>
+          <button
+  onClick={() => {
+    const currentTheme =
+      document.documentElement.getAttribute(
+        "data-theme"
+      );
+
+    const newTheme =
+      currentTheme === "dark"
+        ? "light"
+        : "dark";
+
+    document.documentElement.setAttribute(
+      "data-theme",
+      newTheme
+    );
+  }}
+  className="btn btn-ghost btn-sm"
+>
+  🌙
+</button>
 
           {!user ? (
             <>
