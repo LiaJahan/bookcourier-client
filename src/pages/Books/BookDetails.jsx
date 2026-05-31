@@ -12,6 +12,39 @@ const BookDetails = () => {
 
   const axiosPublic = useAxiosPublic();
 
+  const handleWishlist = async () => {
+    const wishlistInfo = {
+      bookId: book._id,
+      bookTitle: book.title,
+      bookImage: book.image,
+      bookAuthor: book.author,
+      bookPrice: book.price,
+
+      userEmail: user?.email,
+      userName: user?.displayName,
+    };
+
+    try {
+      const res =
+        await axiosPublic.post(
+          "/wishlist",
+          wishlistInfo
+        );
+
+      if (res.data.insertedId) {
+        toast.success(
+          "Added to wishlist"
+        );
+      } else {
+        toast.error(
+          "Already in wishlist"
+        );
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
   const handleOrder = async (e) => {
     e.preventDefault();
 
@@ -108,18 +141,27 @@ const BookDetails = () => {
             {book.description}
           </p>
 
-          <button
-            className="btn btn-primary"
-            onClick={() =>
-              document
-                .getElementById(
-                  "order_modal"
-                )
-                .showModal()
-            }
-          >
-            Order Now
-          </button>
+          <div className="flex gap-3">
+            <button
+              className="btn btn-primary"
+              onClick={() =>
+                document
+                  .getElementById(
+                    "order_modal"
+                  )
+                  .showModal()
+              }
+            >
+              Order Now
+            </button>
+
+            <button
+              onClick={handleWishlist}
+              className="btn btn-outline"
+            >
+              Add To Wishlist
+            </button>
+          </div>
         </div>
 
       </div>
