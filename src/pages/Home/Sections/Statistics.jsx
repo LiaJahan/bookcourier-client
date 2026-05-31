@@ -1,70 +1,55 @@
-import CountUp from "react-countup";
-import { useInView } from "react-intersection-observer";
-
 const Statistics = () => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-  });
-
   return (
-    <section
-      ref={ref}
-      className="py-20"
-    >
-      <h2 className="text-4xl font-bold text-center mb-10">
-        Our Impact
-      </h2>
+    <section className="py-16">
+      <div className="max-w-7xl mx-auto px-4">
 
-      <div className="stats shadow w-full max-w-5xl mx-auto">
+        <h2 className="text-4xl font-bold text-center mb-10">
+          Our Impact
+        </h2>
 
-        <div className="stat">
-          <div className="stat-title">
-            Books
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          <div className="card bg-base-100 shadow-xl">
+            <div className="card-body text-center">
+              <h3 className="text-5xl font-bold text-primary">
+                500+
+              </h3>
+
+              <p>Books Available</p>
+            </div>
           </div>
 
-          <div className="stat-value">
-            {inView && (
-              <CountUp
-                end={500}
-                duration={3}
-              />
-            )}
-            +
+          <div className="card bg-base-100 shadow-xl">
+            <div className="card-body text-center">
+              <h3 className="text-5xl font-bold text-secondary">
+                1000+
+              </h3>
+
+              <p>Active Readers</p>
+            </div>
           </div>
+
+          <div className="card bg-base-100 shadow-xl">
+            <div className="card-body text-center">
+              <h3 className="text-5xl font-bold text-accent">
+                250+
+              </h3>
+
+              <p>Orders Delivered</p>
+            </div>
+          </div>
+
+          <div className="card bg-base-100 shadow-xl">
+            <div className="card-body text-center">
+              <h3 className="text-5xl font-bold text-success">
+                8
+              </h3>
+
+              <p>Cities Covered</p>
+            </div>
+          </div>
+
         </div>
-
-        <div className="stat">
-          <div className="stat-title">
-            Readers
-          </div>
-
-          <div className="stat-value">
-            {inView && (
-              <CountUp
-                end={1000}
-                duration={3}
-              />
-            )}
-            +
-          </div>
-        </div>
-
-        <div className="stat">
-          <div className="stat-title">
-            Orders
-          </div>
-
-          <div className="stat-value">
-            {inView && (
-              <CountUp
-                end={250}
-                duration={3}
-              />
-            )}
-            +
-          </div>
-        </div>
-
       </div>
     </section>
   );
