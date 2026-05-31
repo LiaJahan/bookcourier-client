@@ -25,6 +25,8 @@ import ManageBooks from "../pages/Dashboard/Admin/ManageBooks";
 
 import ErrorPage from "../pages/Error/ErrorPage";
 
+import EditBook from "../pages/Dashboard/Librarian/EditBook";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,10 +41,15 @@ const router = createBrowserRouter([
         path: "/books",
         element: <AllBooks />,
       },
+      // 
       {
-        path: "/books/:id",
-        element: <BookDetails />,
-      },
+  path: "/books/:id",
+  element: <BookDetails />,
+  loader: async ({ params }) =>
+    fetch(
+      `http://localhost:5000/books/${params.id}`
+    ),
+},
       {
         path: "/login",
         element: <Login />,
@@ -51,6 +58,7 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
+      
     ],
   },
 
@@ -82,6 +90,12 @@ const router = createBrowserRouter([
       {
         path: "my-books",
         element: <MyBooks />,
+      },
+      {
+        path: "edit-book/:id",
+        element: <EditBook />,
+        loader: async ({ params }) =>
+        fetch(`http://localhost:5000/books/${params.id}`),
       },
       {
         path: "orders",

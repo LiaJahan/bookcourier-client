@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import { AuthContext } from "../../../providers/AuthProvider";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
@@ -20,7 +21,7 @@ const MyBooks = () => {
       .then((res) => {
         setBooks(res.data);
       });
-  }, [user, axiosPublic]);
+  }, [user]);
 
   return (
     <div>
@@ -65,9 +66,12 @@ const MyBooks = () => {
                 </td>
 
                 <td>
-                  <button className="btn btn-sm btn-warning">
+                  <Link
+                    to={`/dashboard/edit-book/${book._id}`}
+                    className="btn btn-sm btn-warning"
+                  >
                     Edit
-                  </button>
+                  </Link>
                 </td>
               </tr>
             ))}
