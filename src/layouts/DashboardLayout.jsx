@@ -44,11 +44,19 @@ const DashboardLayout = () => {
 
         <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
 
-          <li className="mb-4">
+          {/* <li className="mb-4">
             <h2 className="text-2xl font-bold">
               Dashboard
             </h2>
-          </li>
+          </li> */}
+
+          <li className="mb-4 pointer-events-none">
+  <h2 className="text-2xl font-bold">
+    {role?.charAt(0).toUpperCase() +
+      role?.slice(1)}{" "}
+    Dashboard
+  </h2>
+</li>
 
           {role === "user" && (
             <>
@@ -99,7 +107,7 @@ const DashboardLayout = () => {
               </li>
             </>
           )}
-
+{/* 
           {role === "admin" && (
             <>
               <li>
@@ -120,7 +128,47 @@ const DashboardLayout = () => {
                 </Link>
               </li>
             </>
-          )}
+          )} */}
+
+          {role === "admin" && (
+  <>
+    <li>
+      <Link to="/dashboard/all-users">
+        All Users
+      </Link>
+    </li>
+
+    <li>
+      <Link to="/dashboard/manage-books">
+        Manage Books
+      </Link>
+    </li>
+
+    <li>
+      <Link to="/dashboard/add-book">
+        Add Book
+      </Link>
+    </li>
+
+    <li>
+      <Link to="/dashboard/my-books">
+        My Books
+      </Link>
+    </li>
+
+    <li>
+      <Link to="/dashboard/orders">
+        Orders
+      </Link>
+    </li>
+
+    <li>
+      <Link to="/dashboard/my-profile">
+        My Profile
+      </Link>
+    </li>
+  </>
+)}
 
           <div className="divider"></div>
 
