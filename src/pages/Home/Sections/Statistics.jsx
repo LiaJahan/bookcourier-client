@@ -1,23 +1,51 @@
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
+
 const Statistics = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+  });
+
   return (
-    <section className="py-16">
-      <div className="stats shadow w-full justify-center">
+    <section
+      ref={ref}
+      className="py-20"
+    >
+      <h2 className="text-4xl font-bold text-center mb-10">
+        Our Impact
+      </h2>
+
+      <div className="stats shadow w-full max-w-5xl mx-auto">
 
         <div className="stat">
           <div className="stat-title">
             Books
           </div>
+
           <div className="stat-value">
-            500+
+            {inView && (
+              <CountUp
+                end={500}
+                duration={3}
+              />
+            )}
+            +
           </div>
         </div>
 
         <div className="stat">
           <div className="stat-title">
-            Users
+            Readers
           </div>
+
           <div className="stat-value">
-            1000+
+            {inView && (
+              <CountUp
+                end={1000}
+                duration={3}
+              />
+            )}
+            +
           </div>
         </div>
 
@@ -25,8 +53,15 @@ const Statistics = () => {
           <div className="stat-title">
             Orders
           </div>
+
           <div className="stat-value">
-            250+
+            {inView && (
+              <CountUp
+                end={250}
+                duration={3}
+              />
+            )}
+            +
           </div>
         </div>
 

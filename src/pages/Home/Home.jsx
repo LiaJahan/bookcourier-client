@@ -5,14 +5,17 @@ import WhyChooseUs from "./Sections/WhyChooseUs";
 import Statistics from "./Sections/Statistics";
 import Testimonials from "./Sections/Testimonials";
 import CTA from "./Sections/CTA";
-
+import ReadingJourney from "./Sections/ReadingJourney";
+import MovingBooks from "./Sections/MovingBooks";
 const Home = () => {
   return (
     <div>
       <Banner />
       <LatestBooks />
+      <MovingBooks />
       <Coverage />
       <WhyChooseUs />
+      <ReadingJourney />
       <Statistics />
       <Testimonials />
       <CTA />
