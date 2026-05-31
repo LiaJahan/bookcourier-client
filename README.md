@@ -1,16 +1,52 @@
-# React + Vite
+# BookCourier Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
 
-Currently, two official plugins are available:
+BookCourier is a role-based online book delivery platform where users can browse books, place orders, manage wishlists, and track purchases. Librarians can add and manage books, while administrators can manage users and books across the platform.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* Firebase Authentication
+* Google Login
+* Role-Based Dashboard (User, Librarian, Admin)
+* Private Routes
+* Book Management System
+* Wishlist Functionality
+* Book Ordering System
+* Order Status Tracking
+* Invoice Generation
+* Profile Management
+* Responsive Design
+* Interactive Coverage Map
+* Theme Toggle
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* React
+* React Router
+* Tailwind CSS
+* DaisyUI
+* Firebase Authentication
+* Axios
+* React Hot Toast
+* React Leaflet
+* AOS
+
+## Dependencies
+
+```bash
+npm install
+```
+
+## Environment Variables
+
+Create a `.env.local` file
+
+## Run Locally
+
+```bash
+npm install
+npm run dev
+```
+
